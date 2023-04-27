@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+    <top>
+        <Label text="Chat" BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <ListView id="ChatView" fx:id="ChatView" prefHeight="258.0" prefWidth="203.0" BorderPane.alignment="CENTER" />
+    </center>
+   <bottom>
+      <TextField fx:id="MsgBar" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Send Message" />
+         </children>
+      </VBox>
+   </right>
+   <left>
+      <VBox prefHeight="258.0" prefWidth="154.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView id="ClientView" fx:id="ClientList" prefHeight="322.0" prefWidth="154.0" />
+            <Button fx:id="DeleteUsr" mnemonicParsing="false" text="Delete User" />
+            <Button fx:id="SendToUser" mnemonicParsing="false" text="Send to User" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
