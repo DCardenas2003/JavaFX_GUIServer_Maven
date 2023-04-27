@@ -1,3 +1,5 @@
+import javafx.application.Platform;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,28 +26,40 @@ public class Client extends Thread{
 
 	public void run() {
 		try {
-			socketClient= new Socket("127.0.0.1",5555);
+			socketClient = new Socket("127.0.0.1", 5555);
 			out = new ObjectOutputStream(socketClient.getOutputStream());
 			in = new ObjectInputStream(socketClient.getInputStream());
 			socketClient.setTcpNoDelay(true);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			callback.accept("Connection Failed");
 		}
 
-		while(true) {
+		while (true) {
 			try {
 				String data = in.readObject().toString();
 				callback.accept(data);
-				String clientList = in.readObject().toString();
-				callback.accept("Connected Clients:\n" + clientList);
-			}
-			catch(Exception e) {
-				callback.accept("connection closed");
+				Object obj = in.readObject();
+				if (obj instanceof String) {
+					String clientList = (String) obj;
+					if (!clientList.isEmpty()) {
+						String[] clients = clientList.split("\n");
+						Platform.runLater(() -> {
+							Controller.connectedClientsList.clear();
+							Controller.connectedClientsList.addAll(clients);
+						});
+					} else {
+						Platform.runLater(() -> {
+							Controller.connectedClientsList.clear();
+						});
+					}
+				}
+			} catch (Exception e) {
+				callback.accept("Connection closed");
 				break;
 			}
 		}
 	}
+
 
 	public void send(String data) {
 

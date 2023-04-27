@@ -17,7 +17,7 @@ import javafx.scene.control.ListView;
 public class Server {
 
 	int count = 1;
-	ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
+	static ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
 	TheServer server;
 	private Consumer<Serializable> callback;
 
