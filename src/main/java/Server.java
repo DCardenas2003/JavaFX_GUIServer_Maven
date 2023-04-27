@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 public class Server {
 
 	int count = 1;
-	static ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
+	static ArrayList<ClientThread> clients = new ArrayList<>();
 	TheServer server;
 	private Consumer<Serializable> callback;
 
@@ -57,8 +57,6 @@ public class Server {
 
 
 
-
-
 	class ClientThread extends Thread {
 
 
@@ -70,6 +68,7 @@ public class Server {
 		ClientThread(Socket s, int count) {
 			this.connection = s;
 			this.count = count;
+
 		}
 
 

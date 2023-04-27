@@ -90,8 +90,11 @@ public class Controller implements Initializable {
         String text = msgBar.getText();
         msgBar.clear();
         System.out.println("Sending message: " + text);
+        System.out.println("Number of clients: " + Server.clients.size());
         for (String selectedUser : selectedUsers) {
+            System.out.println("point 1 " + text);
             for (Server.ClientThread t : Server.clients) {
+                System.out.println("point 22 " );
                 if (selectedUser.equals("client #" + t.count)) {
                     try {
                         t.send(text);
