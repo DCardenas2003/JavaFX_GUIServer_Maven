@@ -1,14 +1,11 @@
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
-
-import javafx.application.Platform;
-import javafx.scene.control.ListView;
 /*
  * Clicker: A: I really get it    B: No idea what you are talking about
  * C: kind of following
@@ -20,6 +17,7 @@ public class Server {
 	static ArrayList<ClientThread> clients = new ArrayList<ClientThread>();
 	TheServer server;
 	private Consumer<Serializable> callback;
+
 
 
 	Server(Consumer<Serializable> call) {
@@ -121,6 +119,11 @@ public class Server {
 					break;
 				}
 			}
+		}
+
+		public void send(String message) throws IOException {
+			out.writeObject(message);
+			out.flush();
 		}
 	}
 

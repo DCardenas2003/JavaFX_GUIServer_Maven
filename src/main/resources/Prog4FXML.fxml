@@ -12,15 +12,15 @@
         <Label fx:id="ChatName" text="Chat" BorderPane.alignment="CENTER" />
     </top>
     <center>
-        <ListView id="ChatView" fx:id="ChatView" prefHeight="258.0" prefWidth="203.0" BorderPane.alignment="CENTER" />
+        <ListView  fx:id="chatView" prefHeight="258.0" prefWidth="203.0" BorderPane.alignment="CENTER"  />
     </center>
    <bottom>
-      <TextField fx:id="MsgBar" BorderPane.alignment="CENTER" />
+      <TextField fx:id="msgBar" BorderPane.alignment="CENTER"   />
    </bottom>
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Send Message" />
+            <Button fx:id="msgButton" mnemonicParsing="false" text="Send Message" onAction="#SendMessage" />
          </children>
       </VBox>
    </right>
@@ -28,7 +28,6 @@
       <VBox prefHeight="258.0" prefWidth="154.0" BorderPane.alignment="CENTER">
          <children>
             <ListView id="ClientView" fx:id="ClientList" prefHeight="322.0" prefWidth="154.0" />
-            <Button fx:id="DeleteUsr" mnemonicParsing="false" onAction="#DeleteUser" text="Delete User" />
             <Button fx:id="SendToUser" mnemonicParsing="false" onAction="#ChooseUsers" text="Send to User" />
          </children>
       </VBox>

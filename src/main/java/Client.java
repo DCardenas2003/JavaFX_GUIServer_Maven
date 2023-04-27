@@ -72,4 +72,20 @@ public class Client extends Thread{
 	}
 
 
+	private void startListening() {
+		Thread listener = new Thread(() -> {
+			while (true) {
+				try {
+					String message = in.readObject().toString();
+					Platform.runLater(() -> Controller.chatView.getItems().add(message));
+				} catch (IOException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		listener.setDaemon(true);
+		listener.start();
+	}
+
+
 }
